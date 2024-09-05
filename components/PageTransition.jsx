@@ -1,5 +1,28 @@
-const pagetransition = ({ children }) => {
-  return <AnimatePresence>{children}</AnimatePresence>;
+"use client";
+
+import { AnimatePresence, motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+
+const PageTransition = ({ children }) => {
+  const pathname = usePathname();
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        key={pathname} // Gunakan key untuk mendeteksi perubahan rute
+        initial={{ opacity: 1 }}
+        animate={{
+          opacity: 0,
+          transition: { delay: 1, duration: 0.4, ease: "easeInOut" },
+        }}
+        exit={{ opacity: 0 }}
+        className="h-screen w-screen fixed bg-primary top-0 pointer-events-none"
+      >
+        {/* Efek transisi hanya untuk background */}
+      </motion.div>
+      {children}
+    </AnimatePresence>
+  );
 };
 
-export default pagetransition;
+export default PageTransition;

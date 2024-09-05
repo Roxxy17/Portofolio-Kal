@@ -1,7 +1,9 @@
 // ? Import Any Headers [next/link,button,component(Nav)]
 import Link from "next/link";
-import { Button } from "./ui/Button";
 import Nav from "./Nav";
+import MobileNav from "./MobileNav";
+import { Button } from "./ui/button";
+
 
 const Header = () => {
   return (
@@ -9,8 +11,8 @@ const Header = () => {
       <div className="container mx-auto flex justify-between items-center">
         {/* logo */}
         <Link href="/">
-          <h1 className=" text-4xl font-semibold">
-            Kal<span className="text-accent">.</span>
+          <h1 className=" text-4xl font-semibold hover:text-accent-hover">
+            Kal<span className="text-accent hover:text-white">.</span>
           </h1>
         </Link>
 
@@ -25,8 +27,7 @@ const Header = () => {
 
         {/* Mobile Nav */}
 
-        <div className="xl:hidden">Mobile Nav</div>
-
+        <div className="xl:hidden"><MobileNav /></div>
       </div>
     </header>
   );

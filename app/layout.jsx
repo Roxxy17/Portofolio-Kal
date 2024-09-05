@@ -3,6 +3,7 @@ import { JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import PageTransition from "@/components/pagetransition";
+import StairTransition from "@/components/StairTransition";
 
 // ! This function make a parameter from font google that can be implemented to all website body
 
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={JetBrainsMono.variable}>
         <Header />
+        <StairTransition/>
         <PageTransition>{children}</PageTransition>
       </body>
     </html>
