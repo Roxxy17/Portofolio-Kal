@@ -25,6 +25,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+      <link rel="icon" href="/Black Circle Icon Business Logo (1).png"  />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <title>Kal Portofolio</title>  
+      </head>
       <body className={JetBrainsMono.variable}>
         <Header />
         <StairTransition/>
