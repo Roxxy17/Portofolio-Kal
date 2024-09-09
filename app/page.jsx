@@ -20,10 +20,10 @@ const Home = () => {
 
   return (
     <section className="h-full">
+      <h1 className="h1 text-center mb-8">Software Enggineer</h1>
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row items-center justify-between xl:pt-8 xl:pb-24 gap-0 xl:gap-1">
           <div className="text-center xl:text-left order-2 xl:order-none">
-            <span className="text-xl">Software Developer</span>
             <h1 className="h1 mb-6">
               Hello I&#39;m <br />{" "}
               <span className="text-accent">Kalila Atha Achmad</span>
@@ -61,6 +61,7 @@ const Home = () => {
             <Photo />
           </div>
         </div>
+        {/* disini nanti kalok mau nambahin yang baru baru */}
       </div>
       <Stats />
 
