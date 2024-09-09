@@ -129,36 +129,7 @@ const skills = {
   description:
     "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officiis maiores repellendus veritatis sit sunt error eius? Expedita dolores tempore veritatis nobis dicta ullam sit amet, blanditiis quos, incidunt, similique atque",
   items: [
-    {
-      institution: "Community College",
-      degree: "Associate Degree in Computer Science",
-      duration: "2022 - present",
-    },
-    {
-      institution: "Amikom University",
-      degree: "Bachelor Degree In Computer Science",
-      duration: "2022 - present",
-    },
-    {
-      institution: "Amikom Computer Club",
-      degree: "Certifies Android Developer",
-      duration: "2023 - 2023",
-    },
-    {
-      institution: "Bangkit Academy By Google",
-      degree: "Certified Android Developer",
-      duration: "2024 - Present",
-    },
-    {
-      institution: "Dicoding",
-      degree: "various programming certificates",
-      duration: "2022 - Present",
-    },
-    {
-      institution: "Online Course",
-      degree: "various programming Course",
-      duration: "2022 - Present",
-    },
+
   ],
 };
 
