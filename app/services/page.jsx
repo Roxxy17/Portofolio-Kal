@@ -9,28 +9,28 @@ const Services = [
     num: "01",
     title: "web development",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium minima nostrum error delectus magnam id fuga dicta sapiente ipsum doloremque. Labore tempore distinctio porro vero officia beatae asperiores rerum minima. ",
+      "Providing high-quality web development services, creating responsive and user-friendly websites tailored to client needs. We ensure seamless functionality and optimized performance.",
     href: "",
   },
   {
     num: "02",
-    title: "web development",
+    title: "video editor",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium minima nostrum error delectus magnam id fuga dicta sapiente ipsum doloremque. Labore tempore distinctio porro vero officia beatae asperiores rerum minima. ",
+      "Expert video editing services, bringing your vision to life with professional editing techniques. We focus on storytelling, transitions, effects, and overall video enhancement.",
     href: "",
   },
   {
     num: "03",
-    title: "web development",
+    title: "ui/ux designer",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium minima nostrum error delectus magnam id fuga dicta sapiente ipsum doloremque. Labore tempore distinctio porro vero officia beatae asperiores rerum minima. ",
+      "Delivering exceptional UI/UX design, ensuring user-friendly interfaces and immersive experiences. We focus on both aesthetics and usability for optimal user satisfaction.",
     href: "",
   },
   {
     num: "04",
-    title: "web development",
+    title: "Data Miner",
     description:
-      "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Laudantium minima nostrum error delectus magnam id fuga dicta sapiente ipsum doloremque. Labore tempore distinctio porro vero officia beatae asperiores rerum minima. ",
+      "Offering data mining and web scraping services, extracting valuable insights and information from various sources efficiently and accurately for data-driven decision making.",
     href: "",
   },
 ];
