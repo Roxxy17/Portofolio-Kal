@@ -62,10 +62,10 @@ const Contact = () => {
     // Mengirim email menggunakan EmailJS
     emailjs
       .send(
-        "your_service_id", // Ganti dengan service_id EmailJS
-        "your_template_id", // Ganti dengan template_id EmailJS
+        "service_wgquiym", // Ganti dengan service_id EmailJS
+        "template_kirx4pn", // Ganti dengan template_id EmailJS
         formData,
-        "your_user_id" // Ganti dengan user_id EmailJS
+        "FijQwZafoCPfmJhQH" // Ganti dengan user_id EmailJS
       )
       .then(
         (result) => {
