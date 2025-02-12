@@ -123,7 +123,7 @@ const Contact = () => {
                 Let&apos;s Work Together
               </h3>
               <p className="text-white/60">
-                Silakan isi formulir di bawah ini untuk menghubungi saya.
+                For Contact me, Please fill this form.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <Input

@@ -24,7 +24,7 @@ import {
 const about = {
   title: "About me",
   description:
-    "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolore dolorum cumque sunt. Suscipit modi optio illo vitae obcaecati? Impedit, saepe rem? Voluptatem magnam aspernatur ducimus nobis rem minus ut itaque?",
+    "I am a passionate developer with experience in web development, mobile applications, and data analysis. Always eager to learn new technologies and solve challenging problems.",
   info: [
     {
       fieldName: "Name",
