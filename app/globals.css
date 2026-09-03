@@ -2,24 +2,318 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ═══════════════════════════════════════════════════════════
+   Token warna mengikuti palet neutral shadcn, sama seperti
+   template portfolio Dillion Verma (MIT) yang jadi acuan.
+   ═══════════════════════════════════════════════════════════ */
+:root {
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --border: oklch(0.922 0 0);
+  --card: oklch(1 0 0);
+  --accent: oklch(0.97 0 0);
+  --dot: oklch(0.86 0 0);
+  --ring-subtle: oklch(0.922 0 0 / 35%);
+  --grid-rgb: 0, 0, 0;
+  --shine-rgb: 0 0 0;
+}
+
+.dark {
+  --background: oklch(0.18 0 0);
+  --foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --card: oklch(0.205 0 0);
+  --accent: oklch(0.269 0 0);
+  --dot: oklch(1 0 0 / 16%);
+  --ring-subtle: oklch(1 0 0 / 6%);
+  --grid-rgb: 255, 255, 255;
+  --shine-rgb: 255 255 255;
+}
+
 @layer base {
-    body {
-        @apply font-primary bg-primary text-white leading-loose;
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--background);
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+    /* Ruang untuk dock melayang di bawah */
+    padding-bottom: 112px;
+  }
+
+  ::selection {
+    background-color: var(--foreground);
+    color: var(--background);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--foreground);
+    outline-offset: 3px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
     }
-    .h1 {
-        @apply text-[48px] xl:text-[80px] leading-[1.1] font-semibold;
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
     }
-    .h2 {
-        @apply text-[36px] xl:text-[48px] leading-[1.1] font-semibold;
+  }
+}
+
+@layer components {
+  /* Judul section, kecil dan tebal seperti di acuan */
+  .section-heading {
+    @apply text-xl font-bold tracking-tight;
+  }
+
+  /* Pil skill: border tipis plus ring halus di luarnya.
+     Ring ditulis sebagai box-shadow karena Tailwind v3 tidak bisa
+     menerapkan modifier opasitas pada warna berbasis var(). */
+  .skill-pill {
+    @apply flex h-8 w-fit items-center gap-2 rounded-xl border bg-background px-3
+           text-sm font-medium;
+    box-shadow: 0 0 0 2px var(--ring-subtle);
+  }
+
+  .tech-chip {
+    @apply inline-flex items-center rounded-md border px-2 py-0.5 text-[11px]
+           font-medium text-muted-foreground;
+  }
+
+  /* Tekstur titik untuk panel penutup */
+  .dotted {
+    background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+    background-size: 16px 16px;
+  }
+
+  /* Dock melayang */
+  .dock {
+    @apply fixed bottom-6 left-1/2 z-50 flex -translate-x-1/2 items-center gap-1
+           rounded-full border bg-background p-1.5 backdrop-blur-md;
+    box-shadow: 0 8px 30px rgb(0 0 0 / 0.08);
+  }
+
+  .dock-item {
+    @apply grid h-10 w-10 place-items-center rounded-full text-muted-foreground
+           transition-all duration-200 hover:bg-accent hover:text-foreground;
+  }
+
+  .dock-item:hover {
+    transform: translateY(-2px);
+  }
+
+  .dock-divider {
+    @apply mx-1 h-6 w-px shrink-0;
+    background-color: var(--border);
+  }
+
+  /* Ikon yang melayang pelan di sekitar potret hero */
+  .floaty {
+    animation-name: floaty;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+  /* Cincin ikon yang mengorbit potret */
+  .orbit {
+    animation-name: spin-slow;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+  /* Ikon diputar balik supaya tetap tegak saat cincinnya berputar */
+  .orbit-counter {
+    animation-name: spin-slow;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+  }
+
+
+  /* Sapuan kilau yang melintas saat kartu disentuh kursor */
+  .shine {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shine::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      rgb(var(--shine-rgb) / 0.14) 50%,
+      transparent 80%
+    );
+    transition: transform 0.7s ease;
+    pointer-events: none;
+  }
+
+  .shine:hover::after {
+    transform: translateX(100%);
+  }
+
+  /* Marquee vertikal dua kolom, memudar di atas dan bawah */
+  .vmarquee {
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+  }
+
+  .vmarquee-track {
+    animation: vmarquee-scroll 34s linear infinite;
+    will-change: transform;
+  }
+
+  .vmarquee-track.reverse {
+    animation-direction: reverse;
+  }
+
+  .vmarquee:hover .vmarquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Rel tegak yang membingkai kolom isi, seperti garis tepi buku */
+  .page-rules::before,
+  .page-rules::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background-color: var(--border);
+    pointer-events: none;
+    z-index: -5;
+  }
+
+  .page-rules::before {
+    left: max(0px, calc(50% - 660px));
+  }
+
+  .page-rules::after {
+    right: max(0px, calc(50% - 660px));
+  }
+
+  /* Marquee deretan teknologi */
+  .marquee {
+    @apply relative overflow-hidden;
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 80px,
+      #000 calc(100% - 80px),
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 80px,
+      #000 calc(100% - 80px),
+      transparent
+    );
+  }
+
+  .marquee-track {
+    @apply flex w-max items-center;
+    animation: marquee-scroll 40s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .floaty,
+    .orbit,
+    .orbit-counter {
+      animation: none;
     }
-    .h3 {
-        @apply text-[20px] xl:text-[24px] leading-[1.1] font-semibold;
+    .shine::after {
+      display: none;
     }
-    .text-outline {
-        -webkit-text-stroke:1px #ffffff;
+    .vmarquee-track {
+      animation: none;
     }
-    
-    .text-outline-hover {
-        -webkit-text-stroke:1px #9933FF;
+    .vmarquee {
+      -webkit-mask-image: none;
+      mask-image: none;
     }
+    .marquee-track {
+      animation: none;
+      flex-wrap: wrap;
+      width: 100%;
+      justify-content: center;
+    }
+    .marquee {
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -9px, 0);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes marquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes vmarquee-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
 }

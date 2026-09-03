@@ -1,51 +1,36 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  darkMode: ["class"],
+  darkMode: "class",
   content: [
     "./pages/**/*.{js,jsx}",
     "./components/**/*.{js,jsx}",
     "./app/**/*.{js,jsx}",
     "./src/**/*.{js,jsx}",
   ],
-  prefix: "",
   theme: {
-    container: {
-      center: true,
-      padding: "15px",
-    },
-    screens: {
-      sm: "640px",
-      md: "768px",
-      lg: "960px",
-      xl: "1200px",
-      "2xl": "1400px",
-    },
-    fontFamily: {
-      primary: "var(--font-JetBrainsMono)",
-    },
     extend: {
       colors: {
-        primary: "#1c1c22",
-        accent: {
-          DEFAULT : "#9933FF",
-          hover: "#AA55FF",
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        muted: {
+          DEFAULT: "var(--muted)",
+          foreground: "var(--muted-foreground)",
         },
+        accent: "var(--accent)",
+        card: "var(--card)",
+        border: "var(--border)",
       },
-      keyframes: {
-        "accordion-down": {
-          from: { height: "0" },
-          to: { height: "var(--radix-accordion-content-height)" },
-        },
-        "accordion-up": {
-          from: { height: "var(--radix-accordion-content-height)" },
-          to: { height: "0" },
-        },
+      borderColor: {
+        DEFAULT: "var(--border)",
       },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
+      fontFamily: {
+        sans: ["var(--font-geist-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+      },
+      maxWidth: {
+        page: "672px",
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 };

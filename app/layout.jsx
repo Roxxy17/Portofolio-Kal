@@ -1,39 +1,46 @@
-// ? Import any headers [Css tailwind config, google fonts,Component(Header),]
-import { JetBrains_Mono } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
-import Header from "@/components/Header";
-import PageTransition from "@/components/PageTransition";
-import StairTransition from "@/components/StairTransition";
-
-// ! This function make a parameter from font google that can be implemented to all website body
-
-const JetBrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-  variable: "--font-JetBrainsMono",
-});
-
-// ! This Function to import meta data to html for title and description website
+import Dock from "@/components/layout/Dock";
+import Footer from "@/components/layout/Footer";
+import Ambient from "@/components/layout/Ambient";
+import ScrollProgress from "@/components/primitives/ScrollProgress";
 
 export const metadata = {
-  title: "Portofolio-Kal",
-  description: "Full-Stack Developer",
+  title: "Kalila Atha Achmad",
+  description:
+    "Portfolio of Kalila Atha Achmad, full-stack developer and software engineer in Yogyakarta. Web development, UI and UX design, and data mining.",
 };
 
-// ! This Funtion for export layout for the main html body
+// Dipasang sebelum halaman digambar supaya tema gelap tidak berkedip putih.
+const themeScript = `
+(function(){
+  try {
+    var stored = localStorage.getItem('theme');
+    var dark = stored ? stored === 'dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (dark) document.documentElement.classList.add('dark');
+  } catch (e) {}
+})();
+`;
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
-      <link rel="icon" href="/Black Circle Icon Business Logo (1).png"  />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <title>Kal Portofolio</title>  
+        <link rel="icon" href="/Black Circle Icon Business Logo (1).png" />
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+        {/* Kalau JavaScript mati, isi yang menunggu animasi tetap terbaca */}
+        <noscript>
+          <style>{`[data-reveal]{opacity:1!important;transform:none!important;filter:none!important}`}</style>
+        </noscript>
       </head>
-      <body className={JetBrainsMono.variable}>
-        <Header />
-        <StairTransition/>
-        <PageTransition>{children}</PageTransition>
+      <body className="page-rules relative font-sans">
+        <Ambient />
+        <ScrollProgress />
+        {children}
+        <Footer />
+        <Dock />
       </body>
     </html>
   );
