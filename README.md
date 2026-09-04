@@ -19,7 +19,7 @@ Semua teks dan data halaman ada di satu tempat: **`lib/content.js`**.
 Sunting file itu saja, tidak perlu menyentuh komponen mana pun.
 
 - Identitas, hero, dan about
-- Pengalaman kerja dan pendidikan
+- Pengalaman kerja, lengkap dengan ringkasan, poin rincian, dan chip teknologi
 - Daftar skill
 - Proyek. Tambah objek baru di `work.projects` untuk menambah kartu
 - Tautan sosial. Biarkan `href` kosong untuk menyembunyikan ikon dari dock
@@ -33,7 +33,7 @@ app/            layout, halaman, dan token warna di globals.css
 components/
   layout/       dock melayang dan pengalih tema
   primitives/   BlurFade, animasi masuk
-  sections/     Hero, About, Timeline, Skills, Projects, Contact
+  sections/     Hero, About, Experience, Skills, Projects, Contact
 lib/content.js  seluruh isi halaman
 ```
 

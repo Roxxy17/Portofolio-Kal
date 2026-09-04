@@ -4,7 +4,7 @@ import Showcase from "@/components/sections/Showcase";
 import About from "@/components/sections/About";
 import Stats from "@/components/sections/Stats";
 import Now from "@/components/sections/Now";
-import Timeline from "@/components/sections/Timeline";
+import Experience from "@/components/sections/Experience";
 import Awards from "@/components/sections/Awards";
 import Journey from "@/components/sections/Journey";
 import Skills from "@/components/sections/Skills";
@@ -13,7 +13,6 @@ import Services from "@/components/sections/Services";
 import Process from "@/components/sections/Process";
 import Faq from "@/components/sections/Faq";
 import Contact from "@/components/sections/Contact";
-import { experience, education, certifications, DELAY } from "@/lib/content";
 
 // Dua kolom di layar lebar: rail identitas menempel di kiri, isi mengalir
 // di kanan. Di bawah 1280px keduanya menumpuk jadi satu kolom.
@@ -26,24 +25,7 @@ const Home = () => (
       <About />
       <Stats />
       <Now />
-      <Timeline
-        id="work"
-        heading={experience.heading}
-        items={experience.items}
-        startDelay={0}
-      />
-      <Timeline
-        id="education"
-        heading={education.heading}
-        items={education.items}
-        startDelay={0}
-      />
-      <Timeline
-        id="certifications"
-        heading={certifications.heading}
-        items={certifications.items}
-        startDelay={0}
-      />
+      <Experience />
       <Awards />
       <Journey />
       <Showcase />
